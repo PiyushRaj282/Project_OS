@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CPU Scheduling Visualizer — FCFS / SJF / Round Robin</title>
+  <link rel="stylesheet" href="styles.css">
+  
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="theme-switch-group">
+        <label class="theme-switch">
+          <input type="checkbox" id="themeToggleSwitch" />
+          <span class="slider"></span>
+          <span class="icons">
+            <span class="icon-moon"></span>
+            <span class="icon-sun">☀️</span>
+          </span>
+        </label>
+      </div>
+      <header>
+        <div style="width:48px;height:48px;border-radius:10px;background:linear-gradient(180deg,var(--accent),#4b2bff);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px;">
+          CPU</div>
+        <div>
+          <h1>CPU Scheduling Visualizer</h1>
+          <div class="muted">FCFS | SJF (non-preemptive) | Round Robin</div>
+        </div>
+      </header>
+      <div class="controls">
+        <div class="select-row">
+          <label class="small" for="algorithm">Algorithm</label>
+          <select id="algorithm" title="Choose scheduling algorithm">
+            <option value="FCFS">FCFS (First-Come First-Serve)</option>
+            <option value="SJF">SJF (Shortest Job First - non-preemptive)</option>
+            <option value="RR">Round Robin (preemptive)</option>
+          </select>
+        </div>
+        <div class="select-row" id="quantumRow" style="display:none;">
+          <label class="small" for="quantum">Time Quantum</label>
+          <input id="quantum" type="number" min="1" value="3" title="Time quantum for Round Robin" />
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:12px;">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+            <div style="display:flex;flex-direction:column;">
+              <label class="small muted">Process Name</label>
+              <input id="pname" placeholder="P1" type="text" />
+            </div>
+            <div style="display:flex;flex-direction:column;">
+              <label class="small muted">Arrival Time</label>
+              <input id="arrival" placeholder="0" type="number" min="0" />
+            </div>
+            <div style="display:flex;flex-direction:column;">
+              <label class="small muted">Burst Time</label>
+              <input id="burst" placeholder="4" type="number" min="1" />
+            </div>
+          </div>
+          <div class="hint">
+            💡 <strong>Process Name</strong>: Identifier (e.g., P1) | <strong>Arrival</strong>: When it enters ready queue | <strong>Burst</strong>: CPU time needed
+          </div>
+        </div>
+        <div class="row" style="margin-top:14px;">
+          <button class="btn" id="addProcBtn">+ Add Process</button>
+          <button class="btn ghost" id="clearBtn">Clear</button>
+        </div>
+        <div class="process-list" id="processList" aria-live="polite" style="margin-top:14px;"></div>
+        <div class="bottom-row">
+          <div style="flex:1">
+            <button class="btn secondary" id="runBtn">▶ Run Simulation</button>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button class="btn ghost" id="pauseBtn">⏸ Pause</button>
+            <button class="btn ghost" id="stepBtn">⏭ Step</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <button class="btn ghost" id="resetBtn">Reset</button>
+          <button class="btn ghost" id="exportBtn">📸 Export PNG</button>
+        </div>
+        </div>
+    </div>
+    <div class="card canvas-wrap" style="animation-delay:0.4s;">
+      <div style="display:flex;justify-content:space-between;align-items:center;">
+        <div>
+          <h3 style="margin:0">Gantt Chart</h3>
+          <div class="muted" style="font-size:13px;margin-top:6px;">Animated timeline of CPU allocation</div>
+        </div>
+        <div class="top-actions">
+          <div class="small muted">Playback</div>
+        </div>
+      </div>
+      <canvas id="ganttCanvas" width="1000" height="380"></canvas>
+      <div class="legend" id="legend"></div>
+      <div class="stats" id="stats">
+        <div class="stat-card">
+          <h4>Average Waiting Time</h4>
+          <p id="avgWait">—</p>
+        </div>
+        <div class="stat-card">
+          <h4>Average Turnaround Time</h4>
+          <p id="avgTurn">—</p>
+        </div>
+        <div class="stat-card">
+          <h4>CPU Utilization</h4>
+          <p id="util">—</p>
+        </div>
+        <div class="stat-card">
+          <h4>Total Time</h4>
+          <p id="totalTime">—</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
