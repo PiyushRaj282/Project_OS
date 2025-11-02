@@ -1,112 +1,121 @@
 # 🚀 Execution Guide — CPU Scheduling Visualizer
 
-This guide will help you understand how to **set up**, **run**, and **use** the CPU Scheduling Visualizer.
+This document provides detailed instructions for setting up, using, and understanding the **CPU Scheduling Visualizer**.  
+It covers installation, interface details, visualization explanations, and browser compatibility.
 
 ---
 
-## 🧩 1. Prerequisites
+## ⚙️ Setup Instructions
 
-- A modern web browser (e.g., Chrome, Edge, or Firefox)
-- No installation or backend setup required — it's a **pure front-end project**
+### 1️⃣ Prerequisites
+- No backend or installation is required — this project runs directly in the browser.  
+- You only need a **modern web browser** (Chrome, Edge, or Firefox).
 
----
-
-## 🗂️ 2. Folder Contents
-
-| File | Description |
-|------|-------------|
-| **index.html** | Main structure and layout of the visualizer |
-| **styles.css** | Contains design, responsive layout, and theme colors |
-| **script.js** | Implements CPU scheduling logic and dynamic animations |
-
----
-
-## ⚙️ 3. Steps to Run
+### 2️⃣ Steps to Run the Application Locally
 
 1. **Clone or Download the Repository**
-
    ```bash
    git clone https://github.com/PiyushRaj282/Project_OS.git
    ```
 
-2. **Open the Folder**
+2. **Navigate to the Folder**
    ```bash
    cd Project_OS
    ```
 
 3. **Run the Application**
-   - Simply **double-click `index.html`**
-   - or open it manually in any web browser.
+   - Simply **double-click `index.html`**, or  
+   - Right-click the file → **Open with** → your preferred browser.  
+   - The web application will launch locally and display the CPU Scheduling Visualizer dashboard.
 
 ---
 
-## 🎮 4. How to Use the Visualizer
+## 🧭 User Interface Guide
 
-### 🧱 Step 1: Add Processes
-- Enter **Process Name**, **Arrival Time**, and **Burst Time**.
-- Click **+ Add Process** to add it to the list.
-- You can add multiple processes one by one.
+The interface is divided into **two primary sections** — the **Control Panel** and the **Visualization Area**.
 
-### ⚙️ Step 2: Select Scheduling Algorithm
-- Choose between **FCFS**, **SJF**, or **Round Robin**.
-- If you select **Round Robin**, specify the **Time Quantum** value.
+### 🧩 1. Control Panel (Left Section)
+Used for configuring and running simulations.
 
-### ▶️ Step 3: Run the Simulation
-- Click **Run Simulation** to start the visual animation.
-- The **Gantt Chart** will visualize the CPU allocation.
+#### Input Parameters
+| Field | Description | Example |
+|--------|--------------|----------|
+| **Process Name** | Unique identifier for each process (e.g., P1, P2) | P1 |
+| **Arrival Time** | Time when the process enters the ready queue | 0 |
+| **Burst Time** | Total CPU time required by the process | 4 |
 
-### ⏸️ Step 4: Control the Simulation
-- **Pause** the simulation anytime.  
-- Use **Step** to move through each process execution manually.
-- **Reset** clears all states for a fresh start.
+#### Additional Controls
+| Control | Function |
+|----------|-----------|
+| **Algorithm Selector** | Choose between FCFS, SJF, or Round Robin. |
+| **Time Quantum** | Appears only for Round Robin — defines time slice for each process. |
+| **+ Add Process** | Adds a new process to the list. |
+| **Clear** | Removes all added processes. |
+| **Run Simulation ▶** | Starts the CPU scheduling animation. |
+| **Pause ⏸ / Step ⏭** | Pauses or advances the simulation step-by-step. |
+| **Reset** | Clears all charts and statistics. |
+| **Export PNG 📸** | Saves the Gantt chart as an image file. |
 
-### 📈 Step 5: View Statistics
-- The stats panel below the chart shows:
-  - **Average Waiting Time**
-  - **Average Turnaround Time**
-  - **CPU Utilization**
-  - **Total Time**
-
-### 📸 Step 6: Export Chart
-- Click **Export PNG** to save your current Gantt Chart as an image.
-
----
-
-## 🌗 5. Theme Switching
-
-Use the 🌙 / ☀️ toggle at the top-right corner to switch between:
-- **Dark Mode** – default look  
-- **Light Mode** – bright and clean interface
+#### Output Statistics (Bottom of Left Panel)
+Displays calculated results after running the simulation:
+- **Average Waiting Time**
+- **Average Turnaround Time**
+- **CPU Utilization (%)**
+- **Total Execution Time**
 
 ---
 
-## 🧠 6. Example Test Case
+## 🎞️ Animation Features
 
-| Process | Arrival Time | Burst Time |
-|----------|---------------|-------------|
-| P1 | 0 | 4 |
-| P2 | 1 | 6 |
-| P3 | 2 | 4 |
+The right section visualizes CPU scheduling dynamically through an **animated Gantt Chart**.  
 
-Algorithm: **Round Robin (Quantum = 3)**
+### 🖼️ Visualization Elements
 
-You’ll see a dynamic Gantt Chart visualizing CPU execution order.
+| Element | Description |
+|----------|-------------|
+| **Colored Bars** | Each process is represented by a unique color. The bar’s length corresponds to its burst duration. |
+| **Timeline Labels** | Numbers below the Gantt chart show process start and end times. |
+| **Process Names** | Displayed inside each colored segment for clarity. |
+| **Statistics Section** | Automatically updates after the simulation, summarizing the results. |
+
+### 🎨 Color Coding
+
+Each process is assigned a **distinct color** for easy differentiation. Example:  
+- P1 — Purple (`#7c5cff`)  
+- P2 — Teal (`#00c2a8`)  
+- P3 — Orange (`#ff7a59`)  
+
+Colors remain consistent throughout the simulation for visual tracking.
+
+### 🎬 Animation Controls
+- The simulation **animates process execution sequentially** according to the selected algorithm.  
+- You can **pause**, **resume**, or **step through** the execution manually.  
+- **Round Robin** animations display multiple time slices per process for better understanding.
 
 ---
 
-## 💬 7. Troubleshooting
+## 🌐 Browser Requirements
 
-- ❌ **No processes added?** → Add at least one before running.  
-- ⚙️ **Canvas not visible?** → Resize your browser or refresh.  
-- 📉 **Performance lag?** → Reduce the number of processes.
+### ✅ Recommended Browsers
+| Browser | Minimum Version | Status |
+|----------|----------------|--------|
+| **Google Chrome** | 90+ | ✔️ Fully Supported |
+| **Microsoft Edge** | 90+ | ✔️ Fully Supported |
+| **Mozilla Firefox** | 85+ | ✔️ Fully Supported |
+| **Safari** | 14+ | ⚠️ Partial Support (minor visual differences) |
+
+### ⚠️ Notes
+- Best viewed on **desktop browsers** (laptops or PCs).  
+- Ensure **JavaScript is enabled** for animations to function.  
+- Works offline — no internet connection required once opened locally.  
+- For optimal visuals, use a **minimum screen width of 1200px**.
 
 ---
 
-## 🏁 8. Conclusion
+## 🧠 Summary
 
-This visualizer is an excellent educational tool to **learn**, **teach**, and **demonstrate** CPU scheduling algorithms with clarity and interactivity.
-
-Explore, analyze, and visualize how scheduling affects CPU performance!
+The **CPU Scheduling Visualizer** provides a user-friendly, interactive platform to understand scheduling algorithms visually.  
+It is ideal for students, educators, and developers learning about **operating system process scheduling**.
 
 ---
 
